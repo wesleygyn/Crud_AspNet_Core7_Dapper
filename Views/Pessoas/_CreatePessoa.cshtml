@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Nova Pessoa";
+}
+
+<div class="modal fade" data-bs-backdrop="static" id="createPessoa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nova pessoa</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form asp-action="Create">
+                <div class="modal-body">
+                
+                    <div class="mb-3">
+                        <label name="Nome" id="Nome" class="control-label">Nome</label>
+                        <input type="text" name="Nome" id="Nome" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label name="Sobrenome" id="Sobrenome" class="control-label">Sobrenome</label>
+                        <input type="text" name="Sobrenome" id="Sobrenome" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label name="Nascimento" id="Nascimento" class="control-label">Nascimento</label>
+                        <input type="date" name="Nascimento" id="Nascimento" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label name="Telefone" id="Telefone" class="control-label">Telefone</label>
+                        <input type="text" name="Telefone" id="Telefone" class="form-control" />
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Crud_AspNet_Core7_Dapper.Models.Pessoa>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Cadastro de pessoas</h1>
+
+<p>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createPessoa">
+        <i class="fa-solid fa-plus"></i> Nova pessoa
+    </button>
+    @await Html.PartialAsync("_CreatePessoa")
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sobrenome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nascimento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefone)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sobrenome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nascimento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefone)
+            </td>
+            <td>
+                <button type="button" class="btn bg-transparent" title="Editar" data-bs-toggle="modal" data-bs-target="#editarPessoa-@item.Id" data-url="@Url.Action($"Edit/{item.Id}")">
+                    <strong style="color: #FFBF00"><i class="fa-solid fa-square-pen"></i></strong>
+                </button>
+                @await Html.PartialAsync("_EditPessoa", item)
+
+                <button type="button" class="btn bg-transparent" title="Detalhes" data-bs-toggle="modal" data-bs-target="#detailPessoa-@item.Id" data-url="@Url.Action($"Details/{item.Id}")">
+                    <strong style="color: #2E9AFE"><i class="fa-solid fa-magnifying-glass-plus"></i></strong>
+                </button>
+                @await Html.PartialAsync("_DetailsPessoa", item)
+
+                <button type="button" class="btn bg-transparent" title="Deletar" data-bs-toggle="modal" data-bs-target="#deletePessoa-@item.Id" data-url="@Url.Action($"Delete/{item.Id}")">
+                    <strong style="color: #FF0000"><i class="fa-solid fa-trash-can"></i></strong>
+                </button>
+                @await Html.PartialAsync("_DeletePessoa", item)
+
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
