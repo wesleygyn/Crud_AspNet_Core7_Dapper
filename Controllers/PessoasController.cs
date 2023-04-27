@@ -78,6 +78,8 @@ namespace Crud_AspNet_Core7_Dapper.Controllers
 
                 int id = await sqlConnection.ExecuteScalarAsync<int>(sql, parameters);
 
+                TempData["mensagemResultSucces"] = $"O cadastro de {pessoa.Nome} foi realizado com sucesso!";
+
                 return RedirectToAction(nameof(Index));
             }
         }
@@ -137,11 +139,14 @@ namespace Crud_AspNet_Core7_Dapper.Controllers
 
                     await sqlConnection.ExecuteAsync(sql, parameters);
 
+                    TempData["mensagemResultSucces"] = $"O cadastro de {pessoa.Nome} foi editado com sucesso!";
+
                     return RedirectToAction(nameof(Index));
                 }
             }
             else
             {
+                TempData["mensagemResultError"] = $"Não existe cadastro com o Id {pessoa.Id}.";
                 return NotFound();
             }
         }
@@ -181,6 +186,7 @@ namespace Crud_AspNet_Core7_Dapper.Controllers
         {
             if (id == null)
             {
+                TempData["mensagemResultError"] = $"Cadastro inexistente.";
                 return NotFound();
             }
 
@@ -197,11 +203,14 @@ namespace Crud_AspNet_Core7_Dapper.Controllers
 
                     await sqlConnection.ExecuteAsync(sql, parameters);
 
+                    TempData["mensagemResultSucces"] = $"O cadastro de id {id} foi removido com sucesso!";
+
                     return RedirectToAction(nameof(Index));
                 }
             }
             else
             {
+                TempData["mensagemResultError"] = $"Cadastro inexistente.";
                 return NotFound();
             }
         }

@@ -39,6 +39,24 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+            @if (TempData["mensagemResultSucces"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong><i class="fa-solid fa-circle-check fa-lg"></i></strong>
+                    @TempData["mensagemResultSucces"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+
+            @if (TempData["mensagemResultError"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong><i class="fa-solid fa-triangle-exclamation fa-lg"></i></strong>
+                    @TempData["mensagemResultError"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+
             @RenderBody()
         </main>
     </div>
@@ -54,6 +72,16 @@
 
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () {
+                $(".alert").fadeOut("slow", function () {
+                    $(this).alert('close');
+                });
+            }, 5000);
+        });
+    </script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
